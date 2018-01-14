@@ -5,7 +5,7 @@
  * @flow
  */
 
-export type URLSafeBase64 = string;
+import type { URLSafeBase64 } from '../utility/Base64';
 
 // The keys for the tables in this data store. Using opaque types, which hide
 // the underlying data structure from consumers of the type, ensures that every
