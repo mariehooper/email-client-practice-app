@@ -7,3 +7,52 @@ html {
 *::after {
   box-sizing: inherit;
 }
+
+.wrapper {
+  padding: 0.5rem;
+}
+
+.email-client {
+  border: 1px solid #ccc;
+  display: flex;
+  height: 100vh;
+}
+
+.email-list-container {
+  border-right: 1px solid #ccc;
+  flex: 1;
+}
+
+.email-show-container {
+  flex: 3;
+}
+
+.email-header {
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.email-list {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.email-item {
+  border-bottom: 1px solid #eee;
+  padding: 0.25rem 0.5rem;
+
+  p {
+    margin: 0.2rem 0;
+  }
+
+  .email-subject {
+    font-weight: bold;
+  }
+}
+
+.sender-details {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
