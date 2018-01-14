@@ -1,7 +1,6 @@
 [ignore]
 .*/.cache/.*
 .*/dist/.*
-.*/node_modules/.*
 
 [include]
 
