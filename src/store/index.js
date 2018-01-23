@@ -22,4 +22,18 @@ export function getMessageSubject(message: Message): ?string {
   return subjectHeader && subjectHeader.value;
 }
 
+export function getMessageSender(message: Message): ?string {
+  const { headers } = message.payload;
+  const senderHeader = headers.find(header => header.name === 'From');
+  return senderHeader && senderHeader.value;
+}
+
+export function formatSender(sender: String){
+  return sender.split('\\')[0];
+}
+
+export function formatTimestamp(date: string){
+  return new Date(Number(date)).toLocaleDateString();
+}
+
 export default store;
