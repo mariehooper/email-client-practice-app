@@ -33,6 +33,7 @@ body {
 .email-list-container {
   border-right: 1px solid $gray;
   flex: 1;
+  overflow:scroll;
 }
 
 .email-show-container {

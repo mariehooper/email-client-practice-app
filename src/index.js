@@ -35,8 +35,7 @@ function renderThreads() {
       <h2 class="email-header inbox-header">Inbox ✨</h2>
       <ul class="email-list">
         ${renderThreads()}
-      </ul>
-    `;
+      </ul>`;
 
   const container = document.querySelector('.email-list-container');
   if (container != null) container.innerHTML = sidebarContents;
