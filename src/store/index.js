@@ -9,17 +9,27 @@ import type { Data, Message } from './types';
 
 const store: Data = require('./emails.json');
 
-/**
- * You might find it useful to implement some functions that make accessing
- * deeply nested attributes of Messages or Threads...
- */
-
-// For example, this returns the subject of a given message if it is defined
-// by a header in the message payload
-export function getMessageSubject(message: Message): ?string {
+export function getMessageInfo(message: Message, headerName: string): ?string {
   const { headers } = message.payload;
-  const subjectHeader = headers.find(header => header.name === 'Subject');
-  return subjectHeader && subjectHeader.value;
+  const header = headers.find(h => h.name === headerName);
+  return header && header.value;
+}
+
+export function formatSenderName(sender: string): string {
+  return sender.split('\\')[0];
+}
+
+export function formatTimestamp(date: string): string {
+  const options = {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+  const userLang = navigator.language;
+  return new Date(Number(date)).toLocaleString(userLang, options);
 }
 
 export default store;

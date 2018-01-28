@@ -2,6 +2,7 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "max-nesting-depth": 2,
-    "string-quotes": "single"
+    "string-quotes": "single",
+    "at-rule-no-unknown": null,
   }
 }

@@ -1,8 +1,22 @@
 // Variables
 $gray: #ccc;
 $lightgray: #eee;
+$superlightgray: #fafafa;
+$white: #fff;
+$bodytext: #222;
+$textgray: #545454;
+$main-purple: #548;
 
-$system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$font: 'Source Sans Pro', sans-serif;
+$box-shadow: 0 6px 8px rgba(102, 119, 136, 0.03), 0 1px 2px rgba(102, 119, 136, 0.3);
+
+// mixins
+@mixin truncate($width:inherit) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: $width;
+}
 
 // Base styles
 html {
@@ -16,23 +30,44 @@ html {
 }
 
 body {
-  font-family: $system-font;
+  color: $bodytext;
+  font-family: $font;
+  margin: 0;
 }
 
-.wrapper {
-  padding: 0.5rem;
+// Nav styles
+nav {
+  background-color: $main-purple;
+  color: $white;
+}
+
+.navigation {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+
+  .nav-item {
+    padding: 1.5rem 0.75rem;
+    text-align: center;
+
+    &.active {
+      background-color: darken($main-purple, 10%);
+    }
+  }
 }
 
 // Email client styles
 .email-client {
-  border: 1px solid $gray;
+  background-color: $white;
   display: flex;
-  height: calc(100vh - 2rem);
+  height: 100vh;
 }
 
 .email-list-container {
   border-right: 1px solid $gray;
   flex: 1;
+  min-width: 400px;
+  overflow-y: auto;
 }
 
 .email-show-container {
@@ -40,8 +75,17 @@ body {
 }
 
 .email-header {
+  background-color: $white;
+  color: $main-purple;
+  font-weight: 400;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  position: sticky;
+  top: 0;
+
+  &.inbox-header {
+    border-bottom: 1px solid $lightgray;
+  }
 }
 
 .email-list {
@@ -57,9 +101,13 @@ body {
   cursor: pointer;
   display: block;
   font: inherit;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   text-align: left;
   width: 100%;
+
+  &:hover {
+    background-color: $superlightgray;
+  }
 
   p {
     margin: 0.2rem 0;
@@ -67,6 +115,16 @@ body {
 
   .email-subject {
     font-weight: bold;
+
+    @include truncate();
+  }
+
+  .timestamp {
+    font-size: 0.9rem;
+  }
+
+  .snippet {
+    color: $textgray;
   }
 }
 

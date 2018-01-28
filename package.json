@@ -16,6 +16,7 @@
     "url": "https://github.com/letscodework/email-client-practice-app"
   },
   "scripts": {
+    "build": "parcel build src/index.html --public-url /",
     "flow": "flow check",
     "lint": "npm run lint:js && npm run lint:sass",
     "lint:js": "eslint 'src/**/*.js'",
