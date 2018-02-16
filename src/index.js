@@ -3,14 +3,29 @@
  */
 
 // example of generating HTML with js
-import store, {getMessageSubject, getMessageSender, formatSender, formatTimestamp} from './store'
+import store, {getMessageSubject, getMessageSender, formatSender, formatTimestamp, formatMailboxNames} from './store'
+
+function renderMailboxNames(){
+  const mailboxNames = Object.keys(store.mailboxes);
+  return mailboxNames.map( mailboxName => {
+    return `
+    <li>
+      <button class="mailbox-btn" type="button" data-mailbox="${mailboxName}">
+        ${formatMailboxNames(mailboxName)}
+      </button>
+    </li>`;
+  }).join('');
+}
+
+let selectedMailboxName = 'INBOX';
 
 function renderThreads() {
-  const { threadIds } = store.mailboxes.INBOX;
-  const { messages } = store;
+  const { messages, mailboxes } = store;
+  const selectedMailbox = mailboxes[selectedMailboxName];
+  const { threadIds } = selectedMailbox;
+  console.log(threadIds);
 
-  if (store.mailboxes.INBOX == null) return;
-
+  if (selectedMailbox == null) return '';
   return threadIds.map( ind => {
     const subject = getMessageSubject(messages[ind]);
     const snippet = messages[ind].snippet;
@@ -30,15 +45,46 @@ function renderThreads() {
   }).join('');
 }
 
-  function renderSidebar() {
-    const sidebarContents = `
-      <h2 class="email-header inbox-header">Inbox ✨</h2>
-      <ul class="email-list">
-        ${renderThreads()}
-      </ul>`;
+function renderSidebar() {
+  const sidebarContents = `
+    <h2 class="email-header inbox-header">${formatMailboxNames(selectedMailboxName)} ✨</h2>
+    <ul class="email-list">
+      ${renderThreads()}
+    </ul>`;
 
   const container = document.querySelector('.email-list-container');
   if (container != null) container.innerHTML = sidebarContents;
 }
 
+function renderMailboxToggle(){
+  const toggleMailboxes = `
+    <ul class="mailbox-list">
+      ${renderMailboxNames()}
+    </ul>`;
+  const wrapper = document.querySelector('.toggle-mailboxes');
+  if (wrapper != null) wrapper.innerHTML = toggleMailboxes;
+}
+
+function addClickEvents(){
+  const mailboxButtons = document.querySelectorAll('[data-mailbox]');
+  mailboxButtons.forEach(btn => {
+    btn.addEventListener('click', (event: MouseEvent) =>{
+      selectedMailboxName = event.target.getAttribute('data-mailbox');
+      renderSidebar();
+    });
+  });
+}
+
+renderMailboxToggle();
 renderSidebar();
+addClickEvents();
+
+
+//import Base64 from 'utility/Base64.js'
+//Base64.decode(...)
+// getPartByMimeType(payload,type)
+// if (payload.mimeType == type){
+//   return payload.body
+// }
+// for part in parts
+//   return getPartByMimeType(part,type)

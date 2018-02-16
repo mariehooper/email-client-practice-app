@@ -32,8 +32,12 @@ export function formatSender(sender: String){
   return sender.split('\\')[0];
 }
 
-export function formatTimestamp(date: string){
+export function formatTimestamp(date: String){
   return new Date(Number(date)).toLocaleDateString();
+}
+
+export function formatMailboxNames(name: String){
+  return name.includes('CATEGORY_') ? name.split('CATEGORY_')[1] : name;
 }
 
 export default store;
