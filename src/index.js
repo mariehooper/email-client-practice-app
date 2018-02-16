@@ -45,7 +45,7 @@ function renderThreads() {
   }).join('');
 }
 
-function renderSidebar() {
+function renderMailbox() {
   const sidebarContents = `
     <h2 class="email-header inbox-header">${formatMailboxNames(selectedMailboxName)} ✨</h2>
     <ul class="email-list">
@@ -56,7 +56,7 @@ function renderSidebar() {
   if (container != null) container.innerHTML = sidebarContents;
 }
 
-function renderMailboxToggle(){
+function renderMailboxButtons(){
   const toggleMailboxes = `
     <ul class="mailbox-list">
       ${renderMailboxNames()}
@@ -70,13 +70,13 @@ function addClickEvents(){
   mailboxButtons.forEach(btn => {
     btn.addEventListener('click', (event: MouseEvent) =>{
       selectedMailboxName = event.target.getAttribute('data-mailbox');
-      renderSidebar();
+      renderMailbox();
     });
   });
 }
 
-renderMailboxToggle();
-renderSidebar();
+renderMailboxButtons();
+renderMailbox();
 addClickEvents();
 
 
