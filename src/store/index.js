@@ -22,4 +22,22 @@ export function getMessageSubject(message: Message): ?string {
   return subjectHeader && subjectHeader.value;
 }
 
+export function getMessageSender(message: Message): ?string {
+  const { headers } = message.payload;
+  const senderHeader = headers.find(header => header.name === 'From');
+  return senderHeader && senderHeader.value;
+}
+
+export function formatSender(sender: String){
+  return sender.split('\\')[0];
+}
+
+export function formatTimestamp(date: String){
+  return new Date(Number(date)).toLocaleDateString();
+}
+
+export function formatMailboxNames(name: String){
+  return name.includes('CATEGORY_') ? name.split('CATEGORY_')[1] : name;
+}
+
 export default store;

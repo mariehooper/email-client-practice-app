@@ -33,6 +33,7 @@ body {
 .email-list-container {
   border-right: 1px solid $gray;
   flex: 1;
+  overflow:scroll;
 }
 
 .email-show-container {
@@ -74,4 +75,23 @@ body {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+
+//Mailboxes
+.mailbox-list{
+  list-style: none;
+}
+
+.mailbox-btn{
+  outline:none;
+  padding:1em;
+  border: 1px solid #ccc;
+  background:#fff;
+  transition: all .3s;
+  margin-top:1em;
+  cursor:pointer;
+  &:hover{
+    background: #ccc;
+  }
 }
