@@ -15,21 +15,4 @@ export function getMessageInfo(message: Message, headerName: string): ?string {
   return header && header.value;
 }
 
-export function formatSenderName(sender: string): string {
-  return sender.split('\\')[0];
-}
-
-export function formatTimestamp(date: string): string {
-  const options = {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-  };
-  const userLang = navigator.language;
-  return new Date(Number(date)).toLocaleString(userLang, options);
-}
-
 export default store;

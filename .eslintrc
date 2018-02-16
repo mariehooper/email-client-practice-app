@@ -8,7 +8,7 @@
     "node": true
   },
   "rules": {
-    "max-len": ["error", 80],
+    "max-len": ["error", 100],
     "no-confusing-arrow": "off"
   }
 }

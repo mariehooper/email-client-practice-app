@@ -2,17 +2,39 @@
  * @flow
  */
 
-import store, {
-  getMessageInfo,
-  formatSenderName,
-  formatTimestamp,
-} from './store';
+import store, { getMessageInfo } from './store';
+import { formatSenderName, formatTimestamp, formatMailboxName } from './utility/formatters';
 
-function renderThreads(): string {
+const state = {
+  selectedMailbox: 'INBOX',
+};
+
+function renderMailboxList(): string {
+  const { mailboxes } = store;
+  return Object.keys(mailboxes).map((mailbox: string) => {
+    const activeClass = mailbox === state.selectedMailbox ? 'active' : '';
+    return `
+      <li class="nav-item">
+        <button class="${activeClass}" type="button" data-mailbox="${mailbox}">
+          ${formatMailboxName(mailbox)}
+        </button>
+      </li>
+    `;
+  }).join('');
+}
+
+function renderMailboxes(): void {
+  const mailboxListContents = renderMailboxList();
+
+  const container = document.querySelector('.mailboxes');
+  if (container != null) container.innerHTML = mailboxListContents;
+}
+
+function renderThreadList(): string {
   const { mailboxes, threads } = store;
-  const inbox = mailboxes.INBOX;
-  if (inbox == null) return '';
-  return inbox.threadIds
+  const selected = mailboxes[state.selectedMailbox];
+  if (selected == null) return '';
+  return selected.threadIds
     .map((id) => {
       const [lastMessage] = threads[id].messages.slice(-1);
       const message = store.messages[lastMessage.id];
@@ -37,11 +59,13 @@ function renderThreads(): string {
     }).join('');
 }
 
-function renderSidebar() {
+function renderThreads(): void {
   const sidebarContents = `
-    <h2 class="email-header inbox-header">Inbox ✨</h2>
+    <h2 class="email-header inbox-header">
+      ${formatMailboxName(state.selectedMailbox)} ✨
+    </h2>
     <ul class="email-list">
-      ${renderThreads()}
+      ${renderThreadList()}
     </ul>
   `;
 
@@ -49,4 +73,21 @@ function renderSidebar() {
   if (container != null) container.innerHTML = sidebarContents;
 }
 
-renderSidebar();
+function addClickHandlers(): void {
+  document.querySelectorAll('[data-mailbox]').forEach((button) => {
+    button.addEventListener('click', (e: MouseEvent) => {
+      document.querySelectorAll('[data-mailbox].active').forEach((activeButton) => {
+        activeButton.classList.remove('active');
+      });
+      if (e.currentTarget instanceof HTMLElement) {
+        state.selectedMailbox = e.currentTarget.dataset.mailbox;
+        e.currentTarget.classList.add('active');
+      }
+      renderThreads();
+    });
+  });
+}
+
+renderThreads();
+renderMailboxes();
+addClickHandlers();
