@@ -15,7 +15,7 @@ This project provides a few cool tools as a foundation, so it'd be worthwhile to
 
 Getting the app installed isn't too scary! Just a few simple steps and you'll be all set:
 
-- Fork the [sample repo](https://github.com/letscodework/email-client-practice-app) in GitHub so you have your own copy of the app
+- Fork the [sample repo](https://github.com/mariehooper/email-client-practice-app) in GitHub so you have your own copy of the app
 - Open a terminal/console and navigate to whatever folder you want the project to be in
 - Clone your fork with `git clone git@github.com:YOUR_GITHUB_USERNAME/email-client-practice-app.git`
 - Navigate into the downloaded folder with `cd email-client-practice-app`

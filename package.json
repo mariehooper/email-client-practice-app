@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "bugs": {
-    "url": "https://github.com/letscodework/email-client-practice-app/issues"
+    "url": "https://github.com/mariehooper/email-client-practice-app/issues"
   },
   "contributors": [
     "Cameron Bothner (https://github.com/cbothner)",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/letscodework/email-client-practice-app"
+    "url": "https://github.com/mariehooper/email-client-practice-app"
   },
   "scripts": {
     "flow": "flow check",
