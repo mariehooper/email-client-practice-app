@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "description": "",
   "bugs": {
-    "url": "https://github.com/letscodework/email-client-practice-app/issues"
+    "url": "https://github.com/mariehooper/email-client-practice-app/issues"
   },
+  "author": "Marie Hooper <marie.ashtari@gmail.com> (https://mariehooper.me)",
   "contributors": [
     "Cameron Bothner (https://github.com/cbothner)",
-    "Dave Harlan (https://github.com/dkharlan)",
-    "Marie Hooper <marie.ashtari@gmail.com> (https://mariehooper.me)",
     "Patrick Hooper <patrick.d.hooper@gmail.com> (https://patrickhooper.me)"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/letscodework/email-client-practice-app"
+    "url": "https://github.com/mariehooper/email-client-practice-app"
   },
   "scripts": {
     "flow": "flow check",

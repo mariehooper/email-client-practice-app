@@ -1,5 +1,5 @@
 /**
- * This is the schema for the data store of the emails provided for the Codework
+ * This is the schema for the data store of the emails provided for the
  * Email Client Practice App
  *
  * @flow
